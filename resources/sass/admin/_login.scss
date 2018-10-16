@@ -1,0 +1,20 @@
+.m-login{
+    &.m-login--2{
+        &.m-login--signin{
+            .m-login__reset-password{
+                display:none;
+            }
+        }
+        &.m-login--reset-password{
+            .m-login__signin, .m-login__forget-password{
+                display:none;
+            }
+            
+        }
+        &.m-login--forget-password{
+            .m-login__reset-password{
+                display:none;
+            }
+        }
+    }
+}
