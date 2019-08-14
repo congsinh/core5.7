@@ -20,9 +20,9 @@ class CheckAdmin
                 return $next($request);
             }
             Auth::logout();
-            return redirect()->route('login')->with('error',"You don't have permission to access!");
+            return redirect()->route('admin.login')->with('error',"You don't have permission to access!");
         }else{
-            return redirect()->route('login')->with('error','Please login to continue!');
+            return redirect()->route('admin.login')->with('error','Please login to continue!');
         }
     }
 }

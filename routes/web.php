@@ -11,42 +11,32 @@
 |
 */
 
+Route::group([ 'middleware' => ['web']], function () {
+    Route::group([ 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
 
-Route::group(['domain' => 'admin.' . config('app.domain')], function () {
+        $this->get('login', 'AuthController@showLoginForm')->name('login');
+        $this->post('login', 'AuthController@login')->name('postLogin');
 
-    Route::group(['middleware' => 'check_admin'], function () {
-        Route::group(['namespace' => 'Admin'], function (){
-            Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+        Route::group(['middleware' => 'check_admin'], function () {
+            Route::get('logout', 'AuthController@logout')->name('logout');
+
+            Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
         });
-        Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+
     });
 
-    // Authentication Routes...
-    Route::group(['namespace' => 'Auth'], function (){
-        $this->get('login', 'LoginController@showLoginForm')->name('login');
-        $this->post('login', 'LoginController@login')->name('postLogin');
 
-        // Registration Routes...
-        $this->get('register', 'RegisterController@showRegistrationForm')->name('register');
-        $this->post('register', 'RegisterController@register');
 
-        // Password Reset Routes...
-        $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-        $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-        $this->post('password/reset', 'ResetPasswordController@reset')->name('password.update');
-    });
-
+//    Route::group(['namespace' => 'User'], function (){
+//        Route::get('/', 'MainController@index')->name('web.home');
+//    });
+//
+//
+//
+//
+//
+//    Route::get('/home', 'HomeController@index')->name('home');
 });
 
-
-
-Route::group(['namespace' => 'User'], function (){
-    Route::get('/', 'MainController@index')->name('web.home');
-});
-
-//Auth::routes();
-
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');

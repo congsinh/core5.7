@@ -57,7 +57,7 @@
                     <div class="m-stack__item m-topbar__nav-wrapper">
                         <ul class="m-topbar__nav m-nav m-nav--inline">
                             <li class="m-nav__item">
-                                <a href="{{ route('logout') }}" class="m-nav__link">
+                                <a href="{{ route('admin.logout') }}" class="m-nav__link">
                                     <span class="m-nav__link-icon">
                                         <i class="fa fa-power-off"></i>
                                     </span>
